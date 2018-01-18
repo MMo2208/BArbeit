@@ -1,0 +1,1 @@
+<p>TRAINING</p>

@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
       <div class="medium-12 large-12 columns">
-        <h4>Students</h4>
-        <div class="medium-2  columns"><a class="button hollow success" href="{{ route('new_student') }}">ADD NEW STUDENT</a></div>
+        <h4>Mainframe Users</h4>
+        <div class="medium-2  columns"><a class="button hollow success" href="{{ route('new_user') }}">ADD NEW USER</a></div>
 <p></p>
 
         <table class="stack">
@@ -18,15 +18,16 @@
           <tbody>
 
 
-            @foreach($students as $student)
+            @foreach( $users as $user )
               <tr>
-                <td>{{ $student->title }}. {{ $student->name }}{{ $student->last_name }}</td>
-                <td>{{ $student->email }}</td>
+                <td>{{ $user->title }}. {{ $user->name }}{{ $user->last_name }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
-                  <a class="hollow button" href="{{ route('show_student', ['student_id' => 1 ]) }}">EDIT</a>
+                  <a class="hollow button" href="{{ route('show_user', ['user_id' => 1 ]) }}">EDIT</a>
                   <a class="hollow button warning" href="./book_room.html">DELETE</a>
                 </td>
               </tr>
+
             @endforeach
 
                       </tbody>

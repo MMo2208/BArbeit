@@ -5,6 +5,7 @@
         <title>Mainframe App</title>
             <link rel="icon" type="image/x-icon" href="favicon.ico" />
             <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/mfapp.css') }}">
             <link rel="stylesheet" href="{{ asset('css/app.css') }}">
             <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.css') }}">
             <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.date.css') }}">
@@ -16,7 +17,7 @@
       <div class="row">
         <div class="top-bar-left">
           <ul class="dropdown menu" data-dropdown-menu="tckp8q-dropdown-menu" role="menubar">
-            <li role="menuitem"><a href="{{ asset('contents/home') }}">Home</a></li>
+            <li role="menuitem"><a href="{{ route('admin_view') }}">Home</a></li>
             <li role="menuitem"><a href="{{ asset('students/index') }}">Students</a></li>
             <li role="menuitem"><a href="{{ asset('students/newStudent') }}">Add user</a></li>
           </ul>
@@ -27,7 +28,7 @@
 
     <br>
 
-@yield('content'){{ asset('
+@yield('content')
 
     <div class="row column') }}">
       <hr>

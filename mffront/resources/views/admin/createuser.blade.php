@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
       <div class="medium-12 large-12 columns">
-        <h4>Add New User</h4>
-        <form action="/clients/new" method="post">
+        <h4>New Client</h4>
+        <form action="/users/new" method="post">
           <div class="medium-4  columns">
             <label>Title</label>
             <select name="form[title]">
