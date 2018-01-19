@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMfAdminsTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMfAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mf_admins', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
           $table->increments('id');
           $table->string('title');
           $table->string('name');
@@ -22,6 +22,7 @@ class CreateMfAdminsTable extends Migration
           $table->string('institution');
           $table->integer('pers_nr');
           $table->string('email');
+
 
           $table->timestamps();
         });
@@ -34,6 +35,6 @@ class CreateMfAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mf_admins');
+        Schema::dropIfExists('users');
     }
 }

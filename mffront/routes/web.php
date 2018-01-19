@@ -22,8 +22,8 @@ Route::get('/admin', 'AdminsController@admin')->name('admin_view');
 Route::get('/admin/alter', 'AdminsController@alter')->name('alter_user');
 Route::get('/admin/create', 'AdminsController@newUser')->name('new_user');
 Route::post('/admin/create', 'AdminsController@newUser')->name('create_user');  //also changed
-Route::get('/admin/{user_id}', 'AdminsController@show')->name('show_user');
-Route::post('/admin/{user_id}', 'AdminsController@modify')->name('update_user');
+Route::get('/admin/{users_id}', 'AdminsController@show')->name('show_user');
+Route::post('/admin/{users_id}', 'AdminsController@modify')->name('update_user');
 
 /* Test Routing */
 Route::get('/student', 'StudentsController@index')->name('students');

@@ -3,41 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MF_users as MF_users;
+use App\Users as Users;
 
 class AdminsController extends Controller
 {
     //
+    public function __construct( Users $Users )
+    {
+      $this->Users = $Users;
+    }
+
+
     public function admin()
     {
 
-            $data = [];                     //data als leeres array definieren
+          $data = [];                     //data als leeres array definieren
 
-            $obj = new \stdClass;
-            $obj->id = 1;
-            $obj->title = 'mr';
-            $obj->name = 'john';
-            $obj->last_name = 'doe';
-            $obj->email = 'john@domain.com';
-            $data['users'][] = $obj;      //data wird als obj definiert
+          $data['mf_users'] = $this->Users->all();
 
-            $obj = new \stdClass;
-            $obj->id = 2;
-            $obj->title = 'ms';
-            $obj->name = 'jane';
-            $obj->last_name = 'doe';
-            $obj->email = 'jane@another-domain.com';
-            $data['users'][] = $obj;      //data wird als obj definiert
-
-          //  $data = [];
           //  $data = ['titles'] = $this->$titles;
 
       return view('admin/overview', $data); //pass data to view
     }
 
-    public function newUser( Request $request, MF_users $mf_users )
+    public function newUser( Request $request, Users $Users )
     {
       $data = [];
+
       $data['title'] = $request->input('title');
       $data['name'] = $request->input('name');
       $data['last_name'] = $request->input('last_name');
@@ -62,7 +54,7 @@ class AdminsController extends Controller
           ]
         );
 
-        $mf_users->insert($data);
+        $Users->insert($data);
 
         return redirect('users'); //process data
       }
@@ -86,9 +78,68 @@ class AdminsController extends Controller
 
     public function show($users_id)
     {
+        $data = [];
+        $data['users_id'] = $users_id;
+        //$data['titles'] = $this->titles;
+        $data['modify'] = 1;
+
+        $Users_data = $this->Users->find($users_id);
+
+        $data['title'] = $Users_data->title;
+        $data['name'] = $Users_data->name;
+        $data['last_name'] = $Users_data->last_name;
+        $data['role'] = $Users_data->role;
+        $data['institution'] = $Users_data->institution;
+        $data['pers_nr'] = $Users_data->pers_nr;
+        $data['email'] = $Users_data->email;
+
+        return view('admin/form', $data);
+    }
+
+    public function modify( Request $request, $users_id, Users $Users )
+    {
       $data = [];
-      //$data['titles'] = $this->$titles;
-      $data['modify'] = 1;
+
+      $data['title'] = $request->input('title');
+      $data['name'] = $request->input('name');
+      $data['last_name'] = $request->input('last_name');
+      $data['role'] = $request->input('role');
+      $data['institution'] = $request->input('institution');
+      $data['pers_nr'] = $request->input('pers_nr');
+      $data['email'] = $request->input('email');
+
+
+      if( $request->isMethod('post') )
+      {
+        //dd($data);
+        $this->validate(        //form input validation
+          $request,
+          [
+            'name' => 'required',
+            'last_name' => 'required',
+            'role' => 'required',
+            'institution' => 'required',
+            'pers_nr' => 'required',
+            'email' => 'required',
+          ]
+        );
+
+        $Users_data = $this->Users->find($users_id);
+
+        //$data['titles'] = $this->$titles;
+        $Users_data->title = $request->input('title');
+        $Users_data->name = $request->input('name');
+        $Users_data->last_name = $request->input('last_name');
+        $Users_data->role = $request->input('role');
+        $Users_data->institution = $request->input('institution');
+        $Users_data->pers_nr = $request->input('pers_nr');
+        $Users_data->email = $request->input('email');
+
+        $Users_data->save();
+
+        return redirect('admin'); //process data
+      }
+
       return view('admin/form', $data);
     }
 }
