@@ -15,17 +15,17 @@ Auth::routes();
 
 
 Route::prefix('admin')->group(function () {
-  //Route::get('', 'AdminsController@admin')->name('admin.dashboard');
-
+  /* !! Reihenfolge !! */
   Route::get('/login', 'Auth\AdminsLoginController@showLoginForm')->name('admin_login');
   Route::post('/login', 'Auth\AdminsLoginController@login')->name('admin_login_submit');
   Route::get('/create', 'AdminsController@newUser')->name('new_user');
   Route::post('/create', 'AdminsController@newUser')->name('create_user');  //also changed
+  Route::get('/list', 'AdminsController@userList')->name('userList');
+
   Route::get('/{users_id}', 'AdminsController@show')->name('show_user');
   Route::post('/{users_id}', 'AdminsController@modify')->name('update_user');
+
   Route::get('', 'AdminsController@index')->name('admin_view');
-
-
 });
 
 

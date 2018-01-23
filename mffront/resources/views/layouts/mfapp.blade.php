@@ -18,8 +18,8 @@
         <div class="top-bar-left">
           <ul class="dropdown menu" data-dropdown-menu="tckp8q-dropdown-menu" role="menubar">
             <li role="menuitem"><a href="{{ route('admin_view') }}">Home</a></li>
-            <li role="menuitem"><a href="{{ asset('students/index') }}">Students</a></li>
-            <li role="menuitem"><a href="{{ asset('students/newStudent') }}">Add user</a></li>
+            <li role="menuitem"><a href="{{ route('userList') }}">Liste</a></li>
+            <li role="menuitem"><a href="{{ asset('admin/create') }}">Add user</a></li>
           </ul>
         </div>
         <div class="top-bar-right">

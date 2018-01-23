@@ -22,18 +22,18 @@
           <tbody>
 
 
-        <!--    @foreach( $mf_users as $mf_user )
+            @foreach( $mf_users as $mf_user )
               <tr>
                 <td>{{ $mf_user->title }}. {{ $mf_user->name }} {{ $mf_user->last_name }}</td>
                 <td>{{ $mf_user->role }}</td>
                 <td>{{ $mf_user->email }}</td>
                 <td>
                   <a class="hollow button" href="{{ route('show_user', ['users_id' => $mf_user->id] ) }}">EDIT</a>
-                  <a class="hollow button warning" href="./book_room.html">DELETE</a>
+                  <a class="hollow button warning" href="{{ $mf_user->delete }}">DELETE</a>
                 </td>
               </tr>
 
-            @endforeach-->
+            @endforeach
 
                       </tbody>
         </table>

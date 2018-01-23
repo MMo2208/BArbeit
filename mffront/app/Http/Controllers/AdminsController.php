@@ -15,11 +15,21 @@ class AdminsController extends Controller
     }
 
     public function index() {
+
       return view('admin/dashboard');
     }
 
+    public function userList() {
 
-    public function admin()
+      $data = [];                     //data als leeres array definieren
+
+      $data['mf_users'] = $this->Users->all();
+
+      return view('admin/list', $data);
+    }
+
+
+/*    public function admin()
     {
 
           $data = [];                     //data als leeres array definieren
@@ -28,8 +38,9 @@ class AdminsController extends Controller
 
           //  $data = ['titles'] = $this->$titles;
 
-      return view(route ('admin_view'), $data); //pass data to view
+      return view(route('admin_view'), $data); //pass data to view
     }
+*/
 
     public function newUser( Request $request, Users $Users )
     {
@@ -61,7 +72,7 @@ class AdminsController extends Controller
 
         $Users->insert($data);
 
-        return redirect('users'); //process data
+        return redirect('admin/list'); //process data
       }
 
       //$data['titles'] = $this->$titles;
