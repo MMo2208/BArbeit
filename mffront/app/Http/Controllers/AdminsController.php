@@ -14,6 +14,10 @@ class AdminsController extends Controller
       $this->Users = $Users;
     }
 
+    public function index() {
+      return view('admin/dashboard');
+    }
+
 
     public function admin()
     {
@@ -24,7 +28,7 @@ class AdminsController extends Controller
 
           //  $data = ['titles'] = $this->$titles;
 
-      return view('admin/overview', $data); //pass data to view
+      return view(route ('admin_view'), $data); //pass data to view
     }
 
     public function newUser( Request $request, Users $Users )
@@ -141,7 +145,7 @@ class AdminsController extends Controller
 
         $Users_data->save();
 
-        return redirect('admin'); //process data
+        return redirect('admin/dashboard'); //process data
       }
 
       return view('admin/form', $data);
