@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="row">
+  <!--<p>{ $last_updated }</p>-->
+
+
       <div class="medium-12 large-12 columns">
         <h4>Mainframe Users</h4>
         <div class="medium-2  columns"><a class="button hollow success" href="{{ route('new_user') }}">ADD NEW USER</a></div>

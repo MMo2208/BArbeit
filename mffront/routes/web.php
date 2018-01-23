@@ -11,19 +11,29 @@
 |
 */
 
+Auth::routes();
+
+// Route::middleware('auth')->group( function (){
+
+  /* User Routing */
+  Route::get('/home', 'UserController@account')->name('user_account');
+  Route::get('/user/training', 'UserController@training')->name('training');
+
+  /* Admin Routing */
+  Route::get('/admin', 'AdminsController@admin')->name('admin_view')->middleware('auth');
+  Route::get('/admin/alter', 'AdminsController@alter')->name('alter_user');
+  Route::get('/admin/create', 'AdminsController@newUser')->name('new_user');
+  Route::post('/admin/create', 'AdminsController@newUser')->name('create_user');  //also changed
+  Route::get('/admin/{users_id}', 'AdminsController@show')->name('show_user');
+  Route::post('/admin/{users_id}', 'AdminsController@modify')->name('update_user');
+
+//});
+
+Route::get('generate/password', function(){return bcrypt('123456789'); } );
+
 Route::get('/', 'ContentsController@home')->name('welcome');
 
-/* User Routing */
-Route::get('/user', 'UserController@account')->name('user_account');
-Route::get('/user/training', 'UserController@training')->name('training');
 
-/* Admin Routing */
-Route::get('/admin', 'AdminsController@admin')->name('admin_view');
-Route::get('/admin/alter', 'AdminsController@alter')->name('alter_user');
-Route::get('/admin/create', 'AdminsController@newUser')->name('new_user');
-Route::post('/admin/create', 'AdminsController@newUser')->name('create_user');  //also changed
-Route::get('/admin/{users_id}', 'AdminsController@show')->name('show_user');
-Route::post('/admin/{users_id}', 'AdminsController@modify')->name('update_user');
 
 /* Test Routing */
 Route::get('/student', 'StudentsController@index')->name('students');
@@ -34,3 +44,5 @@ Route::post('/students/{student_id}', 'StudentsController@modify')->name('update
 
 
 Route::get('/di', 'StudentsController@di');
+
+Route::get('/home', 'HomeController@index')->name('home');

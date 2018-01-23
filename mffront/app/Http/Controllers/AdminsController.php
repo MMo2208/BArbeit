@@ -10,6 +10,7 @@ class AdminsController extends Controller
     //
     public function __construct( Users $Users )
     {
+      $this->middleware('auth:admin');
       $this->Users = $Users;
     }
 
@@ -76,7 +77,7 @@ class AdminsController extends Controller
       return view('admin/alteruser');
     }
 
-    public function show($users_id)
+    public function show($users_id, Request $request)
     {
         $data = [];
         $data['users_id'] = $users_id;
@@ -92,6 +93,9 @@ class AdminsController extends Controller
         $data['institution'] = $Users_data->institution;
         $data['pers_nr'] = $Users_data->pers_nr;
         $data['email'] = $Users_data->email;
+
+/* Volatile Data*/
+        $request->session()->put('last_updated', $Users_data->name . ' ' . $Users_data->last_name );
 
         return view('admin/form', $data);
     }

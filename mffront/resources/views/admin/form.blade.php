@@ -5,6 +5,7 @@
       <div class="medium-12 large-12 columns">
         <h4>{{ $modify == 1 ? 'Edit User' : 'Add New User' }}</h4>
         <form action="{{ $modify == 1 ? route('update_user', [ 'users_id' => $users_id ]) : route('create_user') }}" method="post">
+          {{ csrf_field() }}
           <div class="medium-4  columns">
             <label>Title</label>
             <select name="title">
@@ -26,7 +27,7 @@
           </div>
           <div class="medium-8  columns">
             <label>Role</label>
-            <input name="role" type="text" value="{{ old('role') ? old('role') : $role }}">>
+            <input name="role" type="text" value="{{ old('role') ? old('role') : $role }}">
             <small class="error">{{$errors->first('role')}}</small>
           </div>
           <div class="medium-4  columns">

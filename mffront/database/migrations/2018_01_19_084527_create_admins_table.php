@@ -22,6 +22,8 @@ class CreateAdminsTable extends Migration
             $table->string('institution');
             $table->integer('pers_nr');
             $table->string('email');
+            $table->string('password');
+            $table->rememberToken();
 
             $table->timestamps();
         });
