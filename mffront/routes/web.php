@@ -11,8 +11,11 @@
 |
 */
 
-Auth::routes();
 
+Route::get('/', 'ContentsController@home')->name('welcome');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
 
 Route::prefix('admin')->group(function () {
   /* !! Reihenfolge !! */
@@ -26,6 +29,8 @@ Route::prefix('admin')->group(function () {
   Route::post('/{users_id}', 'AdminsController@modify')->name('update_user');
 
   Route::get('', 'AdminsController@index')->name('admin_view');
+
+  Route::get('/logout', 'Auth\AdminsLoginController@logout')->name('admin_logout');
 });
 
 
@@ -37,11 +42,10 @@ Route::prefix('admin')->group(function () {
 
 //});
 
+Route::get('/user/logout', 'Auth\AdminsLoginController@userLogout')->name('user_logout');
+
+
 Route::get('generate/password', function(){return bcrypt('123456789'); } );
-
-Route::get('/', 'ContentsController@home')->name('welcome');
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 /* Test Routing
@@ -52,4 +56,4 @@ Route::get('/students/{student_id}', 'StudentsController@show')->name('show_stud
 Route::post('/students/{student_id}', 'StudentsController@modify')->name('update_student');*/
 
 
-Route::get('/di', 'StudentsController@di');
+//Route::get('/di', 'StudentsController@di');

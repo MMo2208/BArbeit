@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 class ContentsController extends Controller
 {
     //
-    public function home( Request $request )
-  {
-    $data = [];
 
-    /* TO Volatile Data (AdminsController)
-    $last_updated = $request->session()->has('last_updated') ?
-    $request->session()->pull('last_updated') : 'none';
-    $data['last_updated'] = $last_updated; */
-    return view('welcome', $data);
+    public function __construct()
+    {
+      $this->middleware('guest:admin');
+    }
+    
+    public function home()
+  {
+
+    return view('welcome');
   }
 }
