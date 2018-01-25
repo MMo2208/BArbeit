@@ -10,6 +10,7 @@
         <div class="medium-2  columns"><a class="button hollow success" href="{{ route('new_user') }}">ADD NEW USER</a></div>
 <p></p>
 
+
         <table class="stack">
           <thead>
             <tr>
@@ -21,7 +22,6 @@
           </thead>
           <tbody>
 
-
             @foreach( $mf_users as $mf_user )
               <tr>
                 <td>{{ $mf_user->title }}. {{ $mf_user->name }} {{ $mf_user->last_name }}</td>
@@ -29,11 +29,14 @@
                 <td>{{ $mf_user->email }}</td>
                 <td>
                   <a class="hollow button" href="{{ route('show_user', ['users_id' => $mf_user->id] ) }}">EDIT</a>
-                  <a class="hollow button warning" href="{{ $mf_user->delete }}">DELETE</a>
+                  <a class="hollow button warning" data-method="delete" data-token="{{ csrf_token() }}" href="{{ route('delete_user', [ '$users_id' => $mf_user->id ]) }}">DELETE</a>
+
                 </td>
               </tr>
 
             @endforeach
+
+
 
                       </tbody>
         </table>

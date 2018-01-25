@@ -161,4 +161,12 @@ class AdminsController extends Controller
 
       return view('admin/form', $data);
     }
+
+    public function destroy(Users $Users, $users_id) {
+        $Users_data = $this->Users->find($users_id);
+        $Users_data->delete();
+
+        Session::flash('success', 'The user was successfully deleted.');
+        return redirect()->route('userList');
+    }
 }
